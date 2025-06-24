@@ -52,7 +52,8 @@ export default function VideoStitchInterface() {
   const { data: jobStatus, isLoading: isLoadingStatus } = useQuery<VideoStitchJob>({
     queryKey: [`/api/jobs/${currentJobId}`],
     enabled: !!currentJobId,
-    refetchInterval: currentJobId && ["pending", "processing"].includes(jobStatus?.status || "") ? 2000 : false,
+    refetchInterval: 2000,
+    refetchIntervalInBackground: false,
   });
 
   const addVideoUrl = () => {

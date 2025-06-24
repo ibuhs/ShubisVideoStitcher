@@ -51,8 +51,8 @@ export class MemStorage implements IStorage {
       id,
       jobId: job.jobId,
       videoUrls: job.videoUrls,
-      outputFormat: job.outputFormat,
-      quality: job.quality,
+      outputFormat: job.outputFormat || "mp4",
+      quality: job.quality || "auto",
       status: "pending",
       progress: 0,
       downloadUrl: null,
@@ -106,7 +106,8 @@ export class MemStorage implements IStorage {
 
   async cleanupExpiredJobs(): Promise<void> {
     const now = new Date();
-    for (const [jobId, job] of this.videoJobs.entries()) {
+    const entries = Array.from(this.videoJobs.entries());
+    for (const [jobId, job] of entries) {
       if (job.expiresAt && job.expiresAt < now) {
         this.videoJobs.delete(jobId);
       }
