@@ -97,6 +97,13 @@ VideoStitch is a full-stack web application that provides video concatenation se
 
 ## Changelog
 - June 24, 2025. Initial setup
+- June 24, 2025. Applied deployment fixes:
+  - Added SESSION_SECRET environment variable handling with fallback
+  - Implemented proper NODE_ENV detection and validation
+  - Added session middleware configuration for production
+  - Enhanced error handling for server startup
+  - Added health check endpoint (/health) for deployment verification
+  - Improved production environment configuration
 
 ## User Preferences
 
