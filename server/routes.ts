@@ -10,6 +10,15 @@ import fs from "fs";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   
+  // Health check endpoint for deployment verification
+  app.get("/health", (_req, res) => {
+    res.json({ 
+      status: "healthy", 
+      timestamp: new Date().toISOString(),
+      environment: process.env.NODE_ENV || 'development'
+    });
+  });
+
   // Create video stitching job
   app.post("/api/stitch", async (req, res) => {
     try {
